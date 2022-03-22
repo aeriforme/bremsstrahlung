@@ -19,7 +19,7 @@ def g4_SB(E1 = 5*1e6*eV, Z = 29):
     T1 = np.exp(T1)  # MeV
     T1 = np.reshape(T1, (57,1))
     gamma1 = T1 / 0.511 + 1.
-    beta1 = np.sqrt(1.-1./gamma1)
+    beta1 = np.sqrt(gamma1**2-1)/gamma1
     
     k_mat = np.matmul(T1,k_T1) / 0.511 # photon energy [MeV] / mc2
 
@@ -30,6 +30,7 @@ def g4_SB(E1 = 5*1e6*eV, Z = 29):
     k_gamma = (k_mat / (gamma1-1))
 
     index=np.argmin(np.abs(T1 - E1 / (1e6*eV))**2)
+    print('************************', T1[index])
 
 
     return k_gamma[index,:], k_dsigma_dk[index,:]*1e-28*1e-3    

@@ -6,7 +6,7 @@ from non_rel import non_rel_sdcs
 from mod_rel import mod_rel_sdcs
 from ult_rel import ult_rel_sdcs
 
-from threebn import three_bn_a, three_bn_b
+from three_b import three_bn_a, three_bn_b, three_bn
 from g4 import g4_SB
 amc = 1.6605390666e-27 # kg - atomic mass constant
 
@@ -34,9 +34,14 @@ x, y = non_rel_sdcs(E1 = E1, Z = Z, Z_star = 0, n_at = n_at, T = 0, corr = True)
 axs[0].plot(x, y, lw = 2, label = 'Z*=0, T=0, elwert')
 
 
+x, y = three_bn(E1 = E1, Z = Z)
+axs[0].plot(x, y, lw = 2, label = '3BN')
+
 x, y = three_bn_a(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2, label = '3BNa')
 
+x, y = three_bn_b(E1 = E1, Z = Z)
+axs[0].plot(x, y, lw = 2, label = '3BNb')
 
 x, y = g4_SB(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2,  label='geant4')
@@ -73,6 +78,9 @@ x, y = mod_rel_sdcs(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T)
 axs[0].plot(x, y, lw = 2, label = 'TFD')
 
 
+x, y = three_bn(E1 = E1, Z = Z)
+axs[0].plot(x, y, lw = 2, label = '3BN')
+
 x, y = three_bn_b(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2, label = '3BNb')
 
@@ -82,12 +90,19 @@ x, y = g4_SB(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2,  label='geant4')
 
 
+# ionized mediums - no correction 
+for T in (0.1*1e3*eV, ): # 10*1e3*eV): 
+    for Z_star in range(Z):
+        x, y = non_rel_sdcs(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T)
+        axs[1].plot(x, y, lw = 2, label = 'Z* = %01d, T = %.2f keV' % (Z_star, T/1e3/eV))
+
+
 
 axs[0].set_title('Z* = %01d, T = %.2f keV' % (Z_star, T/1e3/eV))
 axs[0].legend()
 axs[0].set_xlabel(r'k / ($\gamma_1$ -1)')
 axs[0].set_ylabel(r'k d$\sigma$/dk')
-
+axs[0].set_ylim(0, 2.5e-27)
 
 plt.tight_layout()
 fig.savefig('mr.png') 
@@ -97,7 +112,7 @@ fig.savefig('mr.png')
 
 
 #_________________________________________________________________________________
-# mod rel electrons
+# ult rel electrons
 fig, axs = plt.subplots(1,2,figsize=(2000./300., 1000./300.), dpi = 300.) 
 
 E1 = 100*1e6*eV
@@ -108,6 +123,9 @@ x, y = ult_rel_sdcs(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T)
 axs[0].plot(x, y, lw = 2, label = 'TFD')
 
 
+x, y = three_bn(E1 = E1, Z = Z)
+axs[0].plot(x, y, lw = 2, label = '3BN')
+
 x, y = three_bn_b(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2, label = '3BNb')
 
@@ -122,6 +140,16 @@ axs[0].set_title('Z* = %01d, T = %.2f keV' % (Z_star, T/1e3/eV))
 axs[0].legend()
 axs[0].set_xlabel(r'k / ($\gamma_1$ -1)')
 axs[0].set_ylabel(r'k d$\sigma$/dk')
+axs[0].set_ylim(0, 2.5e-27)
+
+
+# ionized mediums - no correction 
+for T in (0.1*1e3*eV, ): # 10*1e3*eV): 
+    for Z_star in range(Z):
+        x, y = non_rel_sdcs(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T)
+        axs[1].plot(x, y, lw = 2, label = 'Z* = %01d, T = %.2f keV' % (Z_star, T/1e3/eV))
+
+
 
 
 plt.tight_layout()

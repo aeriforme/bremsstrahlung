@@ -86,13 +86,13 @@ def ult_rel_sdcs(E1 = 100*1e6*eV, Z = 29, Z_star = 0, n_at = 8.47e+28, T = 0):
 
     def f_c(Z): 
         
-        return 0. #(Z*alpha)**2
-        #s = 0
-        #for i in range(1,4): 
+        #return 0. #(Z*alpha)**2
+        s = 0
+        for i in range(1,5): 
             #s = s + ( i * (i**2+alpha**2) )**(-1)
-            #s = s + (-alpha**2 * Z**2)**i * ( zeta(2*i+1) - 1.)    
+            s = s + (-alpha**2 * Z**2)**i * ( zeta(2*i+1) - 1.)    
             #print(i, '-----', zeta(2*i+1, q=1))
-        #return alpha**2*Z**2/(1+alpha**2*Z**2) * s 
+        return alpha**2*Z**2/(1+alpha**2*Z**2) * s 
     
     term1 = 1. + ( (gamma1-k)/gamma1 )**2
     term2 = I1(delta, LL_r()) + 1. - f_c(Z)
@@ -101,7 +101,7 @@ def ult_rel_sdcs(E1 = 100*1e6*eV, Z = 29, Z_star = 0, n_at = 8.47e+28, T = 0):
     term4 = I2(delta, LL_r()) + 5./6. - f_c(Z) 
    
 
-    print(term2)
+    #print(term2)
     #plt.plot(term1*term2)
     #plt.plot(term3*term4)
     #plt.show()
