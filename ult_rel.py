@@ -31,7 +31,7 @@ def ult_rel_sdcs(E1 = 100*1e6*eV, Z = 29, Z_star = 0, n_at = 8.47e+28, T = 0):
     # debye length 
     if Z_star ==0 or T==0 : 
         L_d = 0.
-    else: L_d = np.sqrt(epsilon_0*k_b*T / (e**2*n_i*Z_star*(Z_star+1)))
+    else: L_d = np.sqrt(epsilon_0*T / (e**2*n_i*Z_star*(Z_star+1)))
 
     LL_d = L_d / r_c
     LL_tf = L_tf / r_c 

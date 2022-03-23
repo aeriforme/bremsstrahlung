@@ -31,7 +31,7 @@ def mod_rel_sdcs(E1 = 5*1e6*eV, Z = 29, Z_star = 0, n_at = 8.47e+28, T = 0):
     # debye length 
     if Z_star ==0 or T==0 : 
         L_d = 0.
-    else: L_d = np.sqrt(epsilon_0*k_b*T / (e**2*n_i*Z_star*(Z_star+1)))
+    else: L_d = np.sqrt(epsilon_0*T / (e**2*n_i*Z_star*(Z_star+1)))
 
     LL_d = L_d / r_c
     LL_tf = L_tf / r_c 
@@ -70,17 +70,18 @@ def mod_rel_sdcs(E1 = 5*1e6*eV, Z = 29, Z_star = 0, n_at = 8.47e+28, T = 0):
 
         num = LL_d**2*np.log(1+LL_tf**2)-LL_tf**2*np.log(1+LL_d**2) 
         den = LL_d**2 - LL_tf**2
-        term3 = q_tf*q_d/q**2 * num / den       
+        term3 = q_tf*q_d/q**2 * num / den      
        
         return term1 + term2 + term3
         
     
     def LL_r():
         a = I_tfd()
+        # for W to be real, a must >= -1/e
         W = lambertw(-np.exp(-1-2*a))
         if np.imag(W)==0:
             W = np.real(W)
-        else: print('errorrrrrrrrrrrrrrrrrrrr') 
+        else: print('errorrrrrrrrrrrrrrrrrrrr')
         return np.sqrt( np.exp(W + 1 + 2*a) -1)
     
      

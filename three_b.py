@@ -9,8 +9,11 @@ r_c = hbar / (m_e * c)
 
 def three_bn(E1 = 5*1e6*eV, Z = 29):
 
+    # in koch motz E1 is the total energy 
+    E1 = E1 + m_e*c**2 
+    
     # electron in
-    gamma1 = E1 / (m_e*c**2) + 1.  
+    gamma1 = E1 / (m_e*c**2) 
     p1 = np.sqrt(gamma1**2-1) 
 
     # photon 
@@ -20,28 +23,34 @@ def three_bn(E1 = 5*1e6*eV, Z = 29):
     gamma2 = gamma1 - k   
     p2 = np.sqrt(gamma2**2-1)
     
+    E1 = gamma1
+    E2 = gamma2 
     
-    L = 2. * np.log((gamma1*gamma2 + p1*p2 -1) / k)  
-    eps0 = np.log( (gamma1+p1) / (gamma1-p1) ) 
-    eps = np.log( (gamma2+p2) / (gamma2-p2) )
+    L = 2.*np.log((E1*E2 + p1*p2 -1)/k)  
+    eps0 = np.log((E1+p1)/(E1-p1)) 
+    eps  = np.log((E2+p2)/(E2-p2))
     
+    t1 = 8.*E1*E2/(3.*p1*p2)
+    t2 = k**2 *((E1*E2)**2 + (p1*p2)**2)/(p1*p2)**3
     
-    t1 = 8.*gamma2*gamma1/(3.*p1*p2)
-    t2 = k**2 * ( (gamma1*gamma2)**2 + (p1*p2)**2)/(p1**3*p2**3)
-    tonde = eps0 * (gamma1*gamma2+p1**2)/p1**3 - eps * (gamma1*gamma2+p2**2)/p2**3 + 2*k*gamma1*gamma2/(p1*p2)**2
+    tonde = eps0 * (E1*E2+p1**2)/p1**3 - eps * (E1*E2+p2**2)/p2**3 + 2*k*E1*E2/(p1*p2)**2
+
     t3 = k / (2*p1*p2) * tonde
     squared =  t1 + t2 + t3  
-    curly = 4./3. - 2*gamma1*gamma2* (p1**2+p2**2)/(p1**2*p2**2) + eps0 * gamma2/p1**3 + eps*gamma1/p2**3 + eps*eps0/(p1*p2) + L * squared
-    k_dsigma_dk = Z**2 * r_e**2 * alpha * p2 / p1 * curly 
+    
+    curly = 4./3. - 2*E1*E2* (p1**2+p2**2)/(p1*p2)**2 + eps0*E2/p1**3 + eps*E1/p2**3 + eps*eps0/(p1*p2) + L*squared
+    k_dsigma_dk = Z**2 * r_e**2 * alpha * p2/p1 * curly 
     
     return k/(gamma1-1), k_dsigma_dk 
     
     
 
 def three_bn_a(E1 = 5*1e6*eV, Z = 29):
-
+    # in koch motz E1 is the total energy 
+    E1 = E1 + m_e*c**2 
+    
     # electron in
-    gamma1 = E1 / (m_e*c**2) + 1.  
+    gamma1 = E1 / (m_e*c**2)   
     p1 = np.sqrt(gamma1**2-1) 
 
     # photon 
@@ -58,8 +67,11 @@ def three_bn_a(E1 = 5*1e6*eV, Z = 29):
 
 def three_bn_b(E1 = 5*1e6*eV, Z = 29):
 
+    # in koch motz E1 is the total energy 
+    E1 = E1 + m_e*c**2 
+    
     # electron in
-    gamma1 = E1 / (m_e*c**2) + 1.  
+    gamma1 = E1 / (m_e*c**2)  
     p1 = np.sqrt(gamma1**2-1) 
 
     # photon 
