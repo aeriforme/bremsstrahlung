@@ -1,11 +1,31 @@
 import numpy as np 
 import matplotlib.pyplot as plt
-from scipy.constants import e, m_e, c, alpha, hbar, pi, cos, sin, sqrt
+from scipy.constants import e, m_e, c, alpha, hbar, pi, eV, epsilon_0
+from numpy import cos, sin, sqrt
 
 
 Z = 29
-r0 = e**2 / (m_e * c**2) 
+
+r0 = e**2 / (4*pi*epsilon_0*m_e*c**2)
 r_c = hbar / (m_e * c) 
+
+T = 0
+Z_star = 0
+n_at = 8.47e+28 # sbaglaitoooo
+
+# material
+n_i = n_at
+n_e = Z_star * n_i  
+
+# thomas fermi length 
+L_tf = 4*pi*epsilon_0*hbar**2/m_e/e**2*Z**(-1./3)
+
+# debye length 
+if Z_star ==0 or T==0 : 
+    L_d = 0.
+else: L_d = np.sqrt(epsilon_0*T / (e**2*n_i*Z_star*(Z_star+1)))
+
+
 
 
 def k_dsigma_dk(t, t0, f, g0, k):
@@ -24,9 +44,9 @@ def k_dsigma_dk(t, t0, f, g0, k):
 
     curly = term1 + term2 + term3 + term4
  
-    FT_V = 4*pi*Z*e*(hbar*c)**2 / q**2 
+    FT_V = 4*pi*Z*e*(hbar*c)**2 / (4*pi*epsilon_0) / (q**2 + (hbar*c/L_tf)**2 ) 
 
-    one_minus_F = FT_V * q**2 / (4*pi*e*Z*h**2*c**2)
+    one_minus_F = FT_V * q**2 / (4*pi*e*Z*hbar**2*c**2)
 
     return Z**2 * alpha * r0**2 / 4 / pi**2 * (1. - F)**2 * p / p0 / q**4 
 
@@ -52,7 +72,7 @@ g0 = 1e6*eV / (m_e*c**2)
 x = []
 y = []
 
-for k in np.linspace(0.0,g0-1,100, endpoint=False):    
+for k in np.linspace(0., g0-1,100, endpoint=False):    
     x.append( k / (g0-1) )
     y.append( np.trapz(np.trapz(np.trapz(k_dsigma_dk(T,T0,F,g0,k), axis=0),axis=0),axis=0) ) 
 
