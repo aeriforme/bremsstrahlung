@@ -5,7 +5,7 @@ from scipy.constants import c, hbar, e, m_e, alpha, epsilon_0, pi, k as k_b, eV
 from non_rel import non_rel_sdcs
 from mod_rel import mod_rel_sdcs
 from ult_rel import ult_rel_sdcs
-
+from one_BS import one_BS_num
 from three_b import three_bn_a, three_bn_b, three_bn
 from g4 import g4_SB
 amc = 1.6605390666e-27 # kg - atomic mass constant
@@ -116,6 +116,12 @@ axs[0].plot(x, y, lw = 2, label = '3BN')
 x, y = g4_SB(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2,  label='SB')
 
+# 1bs 
+x, y, y1 = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 50)
+axs[0].plot(x, y, lw = 2,  label='1bs')
+axs[0].plot(x, y1, lw = 2,  label='1bs2')
+
+
 axs[0].set_xlabel(r'k / ($\gamma_1$ -1)')
 axs[0].set_ylabel(r'k d$\sigma$/dk')
 axs[0].set_title(r'E$_1$=%.1f MeV, Z*=%d, T=%d keV' % (E1/(1e6*eV), Z_star, T), pad=15) 
@@ -179,6 +185,11 @@ axs[0].plot(x, y, lw = 2, label = '3BNb')
 # seltzer-berger
 x, y = g4_SB(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2,  label='geant4')
+
+# 1bs 
+x, y, y1 = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 50))
+axs[0].plot(x, y, lw = 2,  label='1bs')
+axs[0].plot(x, y1, lw = 2,  label='1bs2')
 
 
 axs[0].set_xlabel(r'k / ($\gamma_1$ -1)')
@@ -247,6 +258,11 @@ axs[0].plot(x, y, lw = 2, label = '3BNb')
 
 x, y = g4_SB(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2,  label='geant4')
+
+# 1bs 
+x, y, y1 = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 50)
+axs[0].plot(x, y, lw = 2,  label='1bs')
+axs[0].plot(x, y1, lw = 2,  label='1bs2')
 
 
 axs[0].set_title('Z* = %01d, T = %.0f keV' % (Z_star, T/1e3/eV), pad=15)
