@@ -117,9 +117,9 @@ x, y = g4_SB(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2,  label='SB')
 
 # 1bs 
-x, y, y1 = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 50)
+x, y = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 200)
 axs[0].plot(x, y, lw = 2,  label='1bs')
-axs[0].plot(x, y1, lw = 2,  label='1bs2')
+#axs[0].plot(x, y1, lw = 2,  label='1bs2')
 
 
 axs[0].set_xlabel(r'k / ($\gamma_1$ -1)')
@@ -187,9 +187,9 @@ x, y = g4_SB(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2,  label='geant4')
 
 # 1bs 
-x, y, y1 = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 50))
+x ,y = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 200)
 axs[0].plot(x, y, lw = 2,  label='1bs')
-axs[0].plot(x, y1, lw = 2,  label='1bs2')
+#axs[0].plot(x, y1, lw = 2,  label='1bs2')
 
 
 axs[0].set_xlabel(r'k / ($\gamma_1$ -1)')
@@ -260,9 +260,9 @@ x, y = g4_SB(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2,  label='geant4')
 
 # 1bs 
-x, y, y1 = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 50)
+x, y = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 200)
 axs[0].plot(x, y, lw = 2,  label='1bs')
-axs[0].plot(x, y1, lw = 2,  label='1bs2')
+#axs[0].plot(x, y1, lw = 2,  label='1bs2')
 
 
 axs[0].set_title('Z* = %01d, T = %.0f keV' % (Z_star, T/1e3/eV), pad=15)

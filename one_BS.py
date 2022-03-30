@@ -89,16 +89,15 @@ def one_BS_num(E1 = 100*1e3*eV, Z = 29, Z_star = 0, n_at = 8.47e+28, T = 0, N = 
     print('trapz time=', execution_time)
     
     
-    start = perf_counter()
-    for k in k_vec:
-        y2.append( tplquad(lambda z,y,x: k_dsigma_dk(x,y,z,g0,k), 0, pi, lambda x: 0, lambda x:  pi, lambda x,y: 0, lambda x,y: 2*pi)[0] )
+    #start = perf_counter()
+    #for k in k_vec:
+    #    y2.append( tplquad(lambda z,y,x: k_dsigma_dk(x,y,z,g0,k), 0, pi, lambda x: 0, lambda x:  pi, lambda x,y: 0, lambda x,y: 2*pi)[0] )
+    #end = perf_counter() 
+    #execution_time = (end - start)
+    #print('tplquad time=', execution_time)
 
-    end = perf_counter() 
-    execution_time = (end - start)
-    print('tplquad time=', execution_time)
 
-
-    return x, y1, y2 
+    return x, y1
 
 
     
