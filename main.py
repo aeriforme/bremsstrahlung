@@ -117,7 +117,7 @@ x, y = g4_SB(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2,  label='SB')
 
 # 1bs 
-x, y = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 200)
+x, y = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 50)
 axs[0].plot(x, y, lw = 2,  label='1bs')
 #axs[0].plot(x, y1, lw = 2,  label='1bs2')
 
@@ -187,7 +187,7 @@ x, y = g4_SB(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2,  label='geant4')
 
 # 1bs 
-x ,y = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 200)
+x ,y = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 100)
 axs[0].plot(x, y, lw = 2,  label='1bs')
 #axs[0].plot(x, y1, lw = 2,  label='1bs2')
 
@@ -260,7 +260,7 @@ x, y = g4_SB(E1 = E1, Z = Z)
 axs[0].plot(x, y, lw = 2,  label='geant4')
 
 # 1bs 
-x, y = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 200)
+x, y = one_BS_num(E1 = E1, Z = Z, Z_star = Z_star, n_at = n_at, T = T, N = 800)
 axs[0].plot(x, y, lw = 2,  label='1bs')
 #axs[0].plot(x, y1, lw = 2,  label='1bs2')
 
